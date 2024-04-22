@@ -1,14 +1,5 @@
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { FormInputProps } from '@/types/input';
 
-interface FormInputProps {
-  label: string;
-  name: string;
-  type: string;
-  register: UseFormRegister<FieldValues>;
-  required: boolean;
-  pattern?: RegExp;
-  errorMessage?: string;
-}
 
 const FormInput = ({ label, name, type, register, required, pattern, errorMessage }: FormInputProps) => {
   return (
