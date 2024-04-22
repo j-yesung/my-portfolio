@@ -7,5 +7,5 @@ interface FormInputProps {
   register: UseFormRegister<FieldValues>;
   required: boolean;
   pattern?: RegExp;
-  errorMessage?: string;
+  errorMessage?: string | boolean;
 }

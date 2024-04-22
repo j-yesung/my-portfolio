@@ -1,6 +1,6 @@
 import { FormInputProps } from '@/types/input';
 
-const FormInput = ({ label, name, type, register, required, pattern }: FormInputProps) => {
+const FormInput = ({ label, name, type, register, required, pattern, errorMessage }: FormInputProps) => {
   return (
     <div>
       <label className="mt-5 block text-gray-700 text-sm font-bold mb-2" htmlFor={name}>
@@ -12,6 +12,7 @@ const FormInput = ({ label, name, type, register, required, pattern }: FormInput
         type={type}
         {...register(name, { required, pattern })}
       />
+      {errorMessage && <p className="text-red-500 text-xs mt-1">{errorMessage}</p>}
     </div>
   );
 };

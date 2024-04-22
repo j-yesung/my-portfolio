@@ -22,10 +22,22 @@ const Signup = () => {
       <div className="w-full max-w-xs">
         <h1 className="mb-5 text-center text-2xl">My Portfloio</h1>
         <form onSubmit={handleSubmit(clickSignupHandler)} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <FormInput label="이메일" name="email" type="email" register={register} required={true} />
-          {errors.email && <p className="text-red-500 text-xs mt-1">{ESSENTIAL_MESSAGE}</p>}
-          <FormInput label="비밀번호" name="password" type="password" register={register} required={true} />
-          {errors.password && <p className="text-red-500 text-xs mt-1">{ESSENTIAL_MESSAGE}</p>}
+          <FormInput
+            label="이메일"
+            name="email"
+            type="email"
+            register={register}
+            required={true}
+            errorMessage={errors.email && ESSENTIAL_MESSAGE}
+          />
+          <FormInput
+            label="비밀번호"
+            name="password"
+            type="password"
+            register={register}
+            required={true}
+            errorMessage={errors.email && ESSENTIAL_MESSAGE}
+          />
           <FormInput
             label="비밀번호 확인"
             name="confirmPassword"
@@ -33,10 +45,16 @@ const Signup = () => {
             register={register}
             required={true}
             pattern={new RegExp(watch('password'))}
+            errorMessage={isPasswordMatch || PASSWORD_MATCH_MESSAGE}
           />
-          {isPasswordMatch || <p className="text-red-500 text-xs mt-1">{PASSWORD_MATCH_MESSAGE}</p>}
-          <FormInput label="닉네임" name="username" type="text" register={register} required={true} />
-          {errors.username && <p className="text-red-500 text-xs mt-1">{ESSENTIAL_MESSAGE}</p>}
+          <FormInput
+            label="닉네임"
+            name="username"
+            type="text"
+            register={register}
+            required={true}
+            errorMessage={errors.username && ESSENTIAL_MESSAGE}
+          />
           <div className="flex items-center justify-center">
             <button
               type="submit"
