@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import FormInput from './FormInput';
 import { useAuth } from '@/hooks/auth/useAuth';
 
-const Signin = () => {
+const Login = () => {
   const { register, handleSubmit } = useForm();
   const { clickLoginHandler } = useAuth();
 
@@ -27,4 +27,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Login;

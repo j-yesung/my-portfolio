@@ -29,7 +29,7 @@ export const singupHandler = async (values: values) => {
  * @param values 이메일, 비밀번호
  * @returns
  */
-export const SigninHandler = async (values: values) => {
+export const loginHandler = async (values: values) => {
   const { email, password } = values;
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
