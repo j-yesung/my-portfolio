@@ -1,4 +1,4 @@
-import { SigninHandler, singupHandler } from '@/server/supabase/auth';
+import { loginHandler, singupHandler } from '@/server/supabase/auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { SubmitHandler } from 'react-hook-form';
@@ -30,7 +30,7 @@ export const useAuth = () => {
 
   // 로그인 처리 로직
   const loginMutation = useMutation({
-    mutationFn: SigninHandler,
+    mutationFn: loginHandler,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.SIGNIN] });
       notify({ type: 'success', text: '로그인 완료!' });
