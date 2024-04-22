@@ -15,7 +15,6 @@ const FormInput = ({ label, name, type, register, required, pattern, errorMessag
     <div>
       <label htmlFor={name}>{label}</label>
       <input id={name} type={type} {...register(name, { required, pattern })} />
-      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 };

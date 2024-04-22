@@ -1,4 +1,4 @@
-import Signup from '@/components/auth/\bSignup';
+import Signup from '@/components/auth/Signup';
 import Head from 'next/head';
 
 const SignupPage = () => {
