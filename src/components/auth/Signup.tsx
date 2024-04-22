@@ -18,28 +18,35 @@ const Signup = () => {
   const isPasswordMatch = password === confirmPassword;
 
   return (
-    <section>
-      <h1>나의 포트폴리오</h1>
-      <form onSubmit={handleSubmit(clickSignupHandler)}>
-        <FormInput label="이메일" name="email" type="email" register={register} required={true} />
-        {errors.email && <p>{ESSENTIAL_MESSAGE}</p>}
-        <FormInput label="비밀번호" name="password" type="password" register={register} required={true} />
-        {errors.password && <p>{ESSENTIAL_MESSAGE}</p>}
-        <FormInput
-          label="비밀번호 확인"
-          name="confirmPassword"
-          type="password"
-          register={register}
-          required={true}
-          pattern={new RegExp(watch('password'))}
-        />
-        {isPasswordMatch || <p>{PASSWORD_MATCH_MESSAGE}</p>}
-        <FormInput label="닉네임" name="username" type="text" register={register} required={true} />
-        {errors.username && <p>{ESSENTIAL_MESSAGE}</p>}
-        <div>
-          <button type="submit">회원가입</button>
-        </div>
-      </form>
+    <section className="flex justify-center items-center h-screen">
+      <div className="w-full max-w-xs">
+        <h1 className="mb-5 text-center text-2xl">My Portfloio</h1>
+        <form onSubmit={handleSubmit(clickSignupHandler)} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <FormInput label="이메일" name="email" type="email" register={register} required={true} />
+          {errors.email && <p className="text-red-500 text-xs mt-1">{ESSENTIAL_MESSAGE}</p>}
+          <FormInput label="비밀번호" name="password" type="password" register={register} required={true} />
+          {errors.password && <p className="text-red-500 text-xs mt-1">{ESSENTIAL_MESSAGE}</p>}
+          <FormInput
+            label="비밀번호 확인"
+            name="confirmPassword"
+            type="password"
+            register={register}
+            required={true}
+            pattern={new RegExp(watch('password'))}
+          />
+          {isPasswordMatch || <p className="text-red-500 text-xs mt-1">{PASSWORD_MATCH_MESSAGE}</p>}
+          <FormInput label="닉네임" name="username" type="text" register={register} required={true} />
+          {errors.username && <p className="text-red-500 text-xs mt-1">{ESSENTIAL_MESSAGE}</p>}
+          <div className="flex items-center justify-center">
+            <button
+              type="submit"
+              className="w-full mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              회원가입
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 };
