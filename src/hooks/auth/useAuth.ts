@@ -2,6 +2,7 @@ import { SigninHandler, singupHandler } from '@/server/supabase/auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { SubmitHandler } from 'react-hook-form';
+import { useToast } from '../toast/useToast';
 
 type FormValues = Record<string, string>;
 
@@ -13,6 +14,7 @@ const enum QUERY_KEY {
 export const useAuth = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { notify } = useToast();
 
   // 회원가입 처리 로직
   const signupMutation = useMutation({
@@ -31,22 +33,16 @@ export const useAuth = () => {
     mutationFn: SigninHandler,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.SIGNIN] });
+      notify({ type: 'success', text: '로그인 완료!' });
+      router.push('/');
     },
     onError: error => {
-      console.error(error);
+      notify({ type: 'error', text: '이메일 또는 비밀번호가 일치하지 않습니다.' });
     },
   });
 
-  // 회원가입 버튼 클릭
-  const clickSignupHandler: SubmitHandler<FormValues> = data => {
-    signupMutation.mutate(data);
-  };
-
-  // 로그인 버튼 클릭
-  const clickLoginHandler: SubmitHandler<FormValues> = data => {
-    loginMutation.mutate(data);
-    router.push('/');
-  };
+  const clickSignupHandler: SubmitHandler<FormValues> = data => signupMutation.mutate(data);
+  const clickLoginHandler: SubmitHandler<FormValues> = data => loginMutation.mutate(data);
 
   return {
     clickSignupHandler,
